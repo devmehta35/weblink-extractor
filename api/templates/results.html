@@ -19,15 +19,18 @@
 
 <body class="main bg-secondary">
     <div class="d-flex align-items-center">
-        <h1 class="display-1 mb-3">Results: ({{ execution_time }} seconds)</h1>
+        <h1 class="display-3 mb-3">{{ num_results }} Results in ({{ execution_time }} seconds)</h1>
         <form class="m-2" action="/">
             <button class="btn btn-primary type=" submit">New Search</button>
         </form>
     </div>
 
-    <div>
+    <div style="width: 60%; height: 85%;">
         {% for url in urls %}
-        <p>{{ url }}</p>
+        </br>
+        <span>&rArr;</span> <a href={{url}} target="_blank">{{url}}</a>
+        </br>
+        <!-- <p>{{ url }}</p> -->
         {% endfor %}
     </div>
 </body>

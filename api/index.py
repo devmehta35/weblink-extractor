@@ -7,8 +7,10 @@ app = Flask(__name__)
 results = {}
 
 def background_search(query, id):
+    print(f"Starting search for query: {query}")
     start_time = time.monotonic()
     urls = [url for url in search(query)]
+    print(f"Search completed. Found {len(urls)} results.")
     end_time = time.monotonic()
     execution_time = end_time - start_time
     results[id] = (urls, execution_time)
@@ -26,8 +28,9 @@ def home():
 def results_page(id):
     if id in results:
         urls, execution_time = results[id]
-        return render_template('results.html', urls=urls, execution_time=execution_time)
+        return render_template('results.html', urls=urls, execution_time=execution_time, num_results=len(urls))
     return "Results not ready, please refresh the page."
+
 
 if __name__ == '__main__':
     app.run(debug=True)
