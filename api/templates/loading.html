@@ -309,7 +309,9 @@
             <div class="spoke"></div>
         </div>
         <p class="fs-3 mt-3 mb-3">Results will be available soon. Please refresh the page.</p>
-        <a class="fs-2 href="{{ url_for('results_page', id=id) }}">Refresh</a>
+        <form action="{{ url_for('results_page', id=id) }}">
+            <button class="btn btn-primary" type="submit">Refresh</button>
+        </form>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
