@@ -5,14 +5,9 @@ import uuid
 from googlesearch import search
 from pymongo import MongoClient
 from datetime import datetime
-from dotenv import load_dotenv
-import os
-
-# Load environment variables from the .env file
-load_dotenv()
 
 # Setup MongoDB Atlas connection
-uri = os.getenv('MONGODB_URI')
+uri = "mongodb+srv://relaxedmeninsky7:dAC9wAittz1J2TRj@cluster0.wxw9wkm.mongodb.net/"
 client = MongoClient(uri)
 db = client['user_data']
 collection = db['searches']
@@ -26,7 +21,7 @@ def background_search(query, id, ip_address):
     urls = []
     for url in search(query):
         urls.append(url)
-        time.sleep(1)  # Add a delay of 1 second between requests
+        time.sleep(2)  # Add a delay of 1 second between requests
     print(f"Search completed. Found {len(urls)} results.")
     end_time = time.monotonic()
     execution_time = round(end_time - start_time, 2)  # Round off to 2 decimal places
