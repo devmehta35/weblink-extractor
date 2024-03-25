@@ -47,6 +47,3 @@ def results_page(id):
         urls, execution_time = results[id]
         return render_template('results.html', urls=urls, execution_time=execution_time, num_results=len(urls))
     return "Results not ready, please refresh the page."
-
-if __name__ == '__main__':
-    app.run(debug=True)
