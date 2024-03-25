@@ -23,7 +23,10 @@ results = {}
 def background_search(query, id, ip_address):
     print(f"Starting search for query: {query}")
     start_time = time.monotonic()
-    urls = [url for url in search(query)]
+    urls = []
+    for url in search(query):
+        urls.append(url)
+        time.sleep(1)  # Add a delay of 1 second between requests
     print(f"Search completed. Found {len(urls)} results.")
     end_time = time.monotonic()
     execution_time = round(end_time - start_time, 2)  # Round off to 2 decimal places
