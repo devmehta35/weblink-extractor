@@ -4,7 +4,7 @@
 <head>
     <style>
         .main {
-            height: 100vh;
+            height: 100%;
             width: 100%;
             display: flex;
             justify-content: center;
@@ -18,8 +18,8 @@
 </head>
 
 <body class="bg-[#38182f]">
-    <div class="main">
-        <div class="flex justify-center items-center">
+    <div class="main p-8">
+        <div class="flex justify-center items-center fixed bottom-1 right-1">
             <h1 class="mr-2 text-[#EEE1B3]">{{ num_results }} Results in ({{ execution_time }} seconds)</h1>
             <form class="" action="/">
                 <button class="p-2 bg-blue-500 text-white rounded-lg" type=" submit">New Search</button>

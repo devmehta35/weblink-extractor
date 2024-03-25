@@ -3,14 +3,6 @@ from threading import Thread
 import time
 import uuid
 from googlesearch import search
-from pymongo import MongoClient
-from datetime import datetime
-
-# Setup MongoDB Atlas connection
-uri = "mongodb+srv://relaxedmeninsky7:dAC9wAittz1J2TRj@cluster0.wxw9wkm.mongodb.net/"
-client = MongoClient(uri)
-db = client['user_data']
-collection = db['searches']
 
 app = Flask(__name__)
 results = {}
@@ -21,13 +13,11 @@ def background_search(query, id, ip_address):
     urls = []
     for url in search(query):
         urls.append(url)
-        time.sleep(2)  # Add a delay of 1 second between requests
+        time.sleep(1)  # Add a delay of 1 second between requests
     print(f"Search completed. Found {len(urls)} results.")
     end_time = time.monotonic()
     execution_time = round(end_time - start_time, 2)  # Round off to 2 decimal places
     results[id] = (urls, execution_time)
-    # Store the data in MongoDB
-    collection.insert_one({'ip': ip_address, 'query': query, 'num_results': len(urls), 'uuid': id, 'execution_time': execution_time, 'timestamp': datetime.now()})
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -45,3 +35,7 @@ def results_page(id):
         urls, execution_time = results[id]
         return render_template('results.html', urls=urls, execution_time=execution_time, num_results=len(urls))
     return "Results not ready, please refresh the page."
+
+# Development Server Code
+if __name__ == '__main__':
+    app.run(debug=True)
