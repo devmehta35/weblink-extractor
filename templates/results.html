@@ -27,18 +27,11 @@
         </div>
 
         <div class="bg-[#56666B] p-8 rounded-lg text-[#EEE1B3]">
-            <!-- {% for url in urls %}
-            </br>
-            <span>&rArr;</span> <a href="/click/{{ id }}/{{ loop.index0 }}" target="_blank">{{ urls[loop.index0] }}</a>
-            </br>
-            {% endfor %} -->
-
             {% for url in urls %}
             </br>
             <span>⇒</span> <a href={{url}} target="_blank">{{ url }}</a>
             </br>
             {% endfor %}
-
         </div>
     </div>
 </body>
