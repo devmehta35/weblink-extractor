@@ -41,5 +41,5 @@ def results_page(id):
     return "Results not ready, please refresh the page."
 
 # Driver's Code
-# if __name__ == '__main__':
-#     app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
