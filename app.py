@@ -3,36 +3,25 @@ from threading import Thread
 import time
 import uuid
 from googlesearch import search
-from pymongo import MongoClient
-from datetime import datetime
-from dotenv import load_dotenv
-import os
-
-# Load environment variables from the .env file
-load_dotenv()
-
-# Setup MongoDB Atlas connection
-uri = os.getenv('MONGODB_URI')
-client = MongoClient(uri)
-db = client['user_data']
-collection = db['searches']
 
 app = Flask(__name__)
 results = {}
 
 def background_search(query, id, ip_address):
     print(f"Starting search for query: {query}")
+    print(f"IP Address: {ip_address}" )
     start_time = time.monotonic()
     urls = []
     for url in search(query):
         urls.append(url)
         time.sleep(1)  # Add a delay of 1 second between requests
+    for item in urls:
+        index = urls.index(item)
+        print(f"Link {index} => {item}")
     print(f"Search completed. Found {len(urls)} results.")
     end_time = time.monotonic()
     execution_time = round(end_time - start_time, 2)  # Round off to 2 decimal places
     results[id] = (urls, execution_time)
-    # Store the data in MongoDB
-    collection.insert_one({'ip': ip_address, 'query': query, 'num_results': len(urls), 'uuid': id, 'execution_time': execution_time, 'timestamp': datetime.now(), 'urls': urls})
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
