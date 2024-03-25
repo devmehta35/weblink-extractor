@@ -9,7 +9,7 @@ results = {}
 
 def background_search(query, id, ip_address):
     print(f"Starting search for query: {query}")
-    print(f"IP Address: {ip_address}" )
+    print(f"User's IP Address: {ip_address}" )
     start_time = time.monotonic()
     urls = []
     for url in search(query):
@@ -25,11 +25,15 @@ def background_search(query, id, ip_address):
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
+    if request.headers.getlist("X-Forwarded-For"):
+        user_ip = request.headers.getlist("X-Forwarded-For")[0]
+    else:
+        user_ip = request.remote_addr
     if request.method == 'POST':
         query = request.form.get('query')
         id = str(uuid.uuid4())
         ip_address = request.remote_addr
-        Thread(target=background_search, args=(query, id, ip_address)).start()
+        Thread(target=background_search, args=(query, id, user_ip)).start()
         return render_template('loading.html', id=id)
     return render_template('index.html')
 
