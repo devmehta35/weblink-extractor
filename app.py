@@ -25,12 +25,16 @@ results = {}
 
 def background_search(query, id, ip_address):
     print(f"Starting search for query: {query}")
+    print(f"IP Address: {ip_address}")
     start_time = time.monotonic()
     urls = []
     for url in search(query):
         urls.append(url)
         time.sleep(1)  # Add a delay of 1 second between requests
     print(f"Search completed. Found {len(urls)} results.")
+    for item in urls:
+        index = urls.index(item)
+        print(f"Link {index}: {item}")
     end_time = time.monotonic()
     execution_time = round(end_time - start_time, 2)  # Round off to 2 decimal places
     results[id] = (urls, execution_time)
@@ -58,5 +62,5 @@ def results_page(id):
     return "Results not ready, please refresh the page."
 
 # Driver's Code
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app.run(debug=True)
