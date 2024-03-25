@@ -3,6 +3,19 @@ from threading import Thread
 import time
 import uuid
 from googlesearch import search
+from pymongo import MongoClient
+from datetime import datetime
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from the .env file
+load_dotenv()
+
+# Setup MongoDB Atlas connection
+uri = os.getenv('MONGODB_URI')
+client = MongoClient(uri)
+db = client['user_data']
+collection = db['searches']
 
 app = Flask(__name__)
 results = {}
@@ -18,6 +31,8 @@ def background_search(query, id, ip_address):
     end_time = time.monotonic()
     execution_time = round(end_time - start_time, 2)  # Round off to 2 decimal places
     results[id] = (urls, execution_time)
+    # Store the data in MongoDB
+    collection.insert_one({'ip': ip_address, 'query': query, 'num_results': len(urls), 'uuid': id, 'execution_time': execution_time, 'timestamp': datetime.now(), 'urls': urls})
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -36,6 +51,6 @@ def results_page(id):
         return render_template('results.html', urls=urls, execution_time=execution_time, num_results=len(urls))
     return "Results not ready, please refresh the page."
 
-# Development Server Code
+# Driver's Code
 # if __name__ == '__main__':
 #     app.run(debug=True)
