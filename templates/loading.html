@@ -3,6 +3,8 @@
 
 <head>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,500;1,400;1,500&display=swap');
+
     .main {
       height: 100vh;
       width: 100%;
@@ -11,398 +13,211 @@
       align-items: center;
       flex-direction: column;
     }
-
-
-    .wheel-and-hamster {
-      --dur: 1s;
-      position: relative;
-      width: 12em;
-      height: 12em;
-      font-size: 14px;
+  </style>
+  <!-- Poppins Font Classes -->
+  <style>
+    .poppins-extralight {
+      font-family: "Poppins", sans-serif;
+      font-weight: 200;
+      font-style: normal;
     }
 
-    .wheel,
-    .hamster,
-    .hamster div,
-    .spoke {
+    .poppins-regular {
+      font-family: "Poppins", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    .poppins-medium {
+      font-family: "Poppins", sans-serif;
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    .poppins-regular-italic {
+      font-family: "Poppins", sans-serif;
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    .poppins-medium-italic {
+      font-family: "Poppins", sans-serif;
+      font-weight: 500;
+      font-style: italic;
+    }
+  </style>
+  <!-- Loader CSS -->
+  <style>
+    /*
+    * Prefixed by https://autoprefixer.github.io
+    * PostCSS: v8.4.14,
+    * Autoprefixer: v10.4.7
+    * Browsers: last 4 version
+    */
+
+    .sharingon {
+      width: 6em;
+      height: 6em;
+      background-color: red;
+      border: 6px solid black;
+      -webkit-animation: rot 1s ease-in-out infinite;
+      animation: rot 1s ease-in-out infinite;
+    }
+
+    .ring {
       position: absolute;
-    }
-
-    .wheel,
-    .spoke {
-      border-radius: 50%;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    .wheel {
-      background: radial-gradient(100% 100% at center, hsla(0, 0%, 60%, 0) 47.8%, hsl(0, 0%, 60%) 48%);
-      z-index: 2;
-    }
-
-    .hamster {
-      animation: hamster var(--dur) ease-in-out infinite;
+      content: "";
+      left: 50%;
       top: 50%;
-      left: calc(50% - 3.5em);
-      width: 7em;
-      height: 3.75em;
-      transform: rotate(4deg) translate(-0.8em, 1.85em);
-      transform-origin: 50% 0;
-      z-index: 1;
+      width: 3.5em;
+      height: 3.5em;
+      border: 4px solid rgb(110, 13, 13, 0.5);
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
     }
 
-    .hamster__head {
-      animation: hamsterHead var(--dur) ease-in-out infinite;
-      background: hsl(30, 90%, 55%);
-      border-radius: 70% 30% 0 100% / 40% 25% 25% 60%;
-      box-shadow: 0 -0.25em 0 hsl(30, 90%, 80%) inset,
-        0.75em -1.55em 0 hsl(30, 90%, 90%) inset;
-      top: 0;
-      left: -2em;
-      width: 2.75em;
-      height: 2.5em;
-      transform-origin: 100% 50%;
-    }
-
-    .hamster__ear {
-      animation: hamsterEar var(--dur) ease-in-out infinite;
-      background: hsl(0, 90%, 85%);
+    .sharingon,
+    .ring,
+    .to,
+    .circle {
       border-radius: 50%;
-      box-shadow: -0.25em 0 hsl(30, 90%, 55%) inset;
-      top: -0.25em;
-      right: -0.25em;
-      width: 0.75em;
-      height: 0.75em;
-      transform-origin: 50% 75%;
     }
 
-    .hamster__eye {
-      animation: hamsterEye var(--dur) linear infinite;
-      background-color: hsl(0, 0%, 0%);
-      border-radius: 50%;
-      top: 0.375em;
-      left: 1.25em;
-      width: 0.5em;
-      height: 0.5em;
+    .to,
+    .circle {
+      position: absolute;
+      content: "";
+      width: 0.9em;
+      height: 0.9em;
+      background-color: black;
     }
 
-    .hamster__nose {
-      background: hsl(0, 90%, 75%);
-      border-radius: 35% 65% 85% 15% / 70% 50% 50% 30%;
-      top: 0.75em;
-      left: 0;
-      width: 0.2em;
-      height: 0.25em;
+    .to:nth-child(1) {
+      top: -0.5em;
+      left: 50%;
+      -webkit-transform: translate(-40%);
+      -ms-transform: translate(-40%);
+      transform: translate(-40%);
     }
 
-    .hamster__body {
-      animation: hamsterBody var(--dur) ease-in-out infinite;
-      background: hsl(30, 90%, 90%);
-      border-radius: 50% 30% 50% 30% / 15% 60% 40% 40%;
-      box-shadow: 0.1em 0.75em 0 hsl(30, 90%, 55%) inset,
-        0.15em -0.5em 0 hsl(30, 90%, 80%) inset;
-      top: 0.25em;
-      left: 2em;
-      width: 4.5em;
-      height: 3em;
-      transform-origin: 17% 50%;
-      transform-style: preserve-3d;
+    .to::before {
+      content: "";
+      position: absolute;
+      top: -0.5em;
+      right: -0.2em;
+      width: 1.1em;
+      height: 0.9em;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      border-left: 16px solid black;
+      border-radius: 100% 0 0;
     }
 
-    .hamster__limb--fr,
-    .hamster__limb--fl {
-      clip-path: polygon(0 0, 100% 0, 70% 80%, 60% 100%, 0% 100%, 40% 80%);
-      top: 2em;
-      left: 0.5em;
+    .to:nth-child(2) {
+      bottom: 0.5em;
+      left: -0.35em;
+      -webkit-transform: rotate(-120deg);
+      -ms-transform: rotate(-120deg);
+      transform: rotate(-120deg);
+    }
+
+    .to:nth-child(3) {
+      bottom: 0.5em;
+      right: -0.35em;
+      -webkit-transform: rotate(120deg);
+      -ms-transform: rotate(120deg);
+      transform: rotate(120deg);
+    }
+
+    .circle {
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      -webkit-box-shadow: 0 0 20px 1px;
+      box-shadow: 0 0 20px 1px;
       width: 1em;
-      height: 1.5em;
-      transform-origin: 50% 0;
+      height: 1em;
     }
 
-    .hamster__limb--fr {
-      animation: hamsterFRLimb var(--dur) linear infinite;
-      background: linear-gradient(hsl(30, 90%, 80%) 80%, hsl(0, 90%, 75%) 80%);
-      transform: rotate(15deg) translateZ(-1px);
-    }
-
-    .hamster__limb--fl {
-      animation: hamsterFLLimb var(--dur) linear infinite;
-      background: linear-gradient(hsl(30, 90%, 90%) 80%, hsl(0, 90%, 85%) 80%);
-      transform: rotate(15deg);
-    }
-
-    .hamster__limb--br,
-    .hamster__limb--bl {
-      border-radius: 0.75em 0.75em 0 0;
-      clip-path: polygon(0 0, 100% 0, 100% 30%, 70% 90%, 70% 100%, 30% 100%, 40% 90%, 0% 30%);
-      top: 1em;
-      left: 2.8em;
-      width: 1.5em;
-      height: 2.5em;
-      transform-origin: 50% 30%;
-    }
-
-    .hamster__limb--br {
-      animation: hamsterBRLimb var(--dur) linear infinite;
-      background: linear-gradient(hsl(30, 90%, 80%) 90%, hsl(0, 90%, 75%) 90%);
-      transform: rotate(-25deg) translateZ(-1px);
-    }
-
-    .hamster__limb--bl {
-      animation: hamsterBLLimb var(--dur) linear infinite;
-      background: linear-gradient(hsl(30, 90%, 90%) 90%, hsl(0, 90%, 85%) 90%);
-      transform: rotate(-25deg);
-    }
-
-    .hamster__tail {
-      animation: hamsterTail var(--dur) linear infinite;
-      background: hsl(0, 90%, 85%);
-      border-radius: 0.25em 50% 50% 0.25em;
-      box-shadow: 0 -0.2em 0 hsl(0, 90%, 75%) inset;
-      top: 1.5em;
-      right: -0.5em;
-      width: 1em;
-      height: 0.5em;
-      transform: rotate(30deg) translateZ(-1px);
-      transform-origin: 0.25em 0.25em;
-    }
-
-    .spoke {
-      animation: spoke var(--dur) linear infinite;
-      background: radial-gradient(100% 100% at center, hsl(0, 0%, 60%) 4.8%, hsla(0, 0%, 60%, 0) 5%),
-        linear-gradient(hsla(0, 0%, 55%, 0) 46.9%, hsl(0, 0%, 65%) 47% 52.9%, hsla(0, 0%, 65%, 0) 53%) 50% 50% / 99% 99% no-repeat;
-    }
-
-    /* Animations */
-    @keyframes hamster {
-
-      from,
-      to {
-        transform: rotate(4deg) translate(-0.8em, 1.85em);
+    @-webkit-keyframes rot {
+      0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
       }
 
-      50% {
-        transform: rotate(0) translate(-0.8em, 1.85em);
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
       }
     }
 
-    @keyframes hamsterHead {
-
-      from,
-      25%,
-      50%,
-      75%,
-      to {
-        transform: rotate(0);
+    @keyframes rot {
+      0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
       }
 
-      12.5%,
-      37.5%,
-      62.5%,
-      87.5% {
-        transform: rotate(8deg);
-      }
-    }
-
-    @keyframes hamsterEye {
-
-      from,
-      90%,
-      to {
-        transform: scaleY(1);
-      }
-
-      95% {
-        transform: scaleY(0);
-      }
-    }
-
-    @keyframes hamsterEar {
-
-      from,
-      25%,
-      50%,
-      75%,
-      to {
-        transform: rotate(0);
-      }
-
-      12.5%,
-      37.5%,
-      62.5%,
-      87.5% {
-        transform: rotate(12deg);
-      }
-    }
-
-    @keyframes hamsterBody {
-
-      from,
-      25%,
-      50%,
-      75%,
-      to {
-        transform: rotate(0);
-      }
-
-      12.5%,
-      37.5%,
-      62.5%,
-      87.5% {
-        transform: rotate(-2deg);
-      }
-    }
-
-    @keyframes hamsterFRLimb {
-
-      from,
-      25%,
-      50%,
-      75%,
-      to {
-        transform: rotate(50deg) translateZ(-1px);
-      }
-
-      12.5%,
-      37.5%,
-      62.5%,
-      87.5% {
-        transform: rotate(-30deg) translateZ(-1px);
-      }
-    }
-
-    @keyframes hamsterFLLimb {
-
-      from,
-      25%,
-      50%,
-      75%,
-      to {
-        transform: rotate(-30deg);
-      }
-
-      12.5%,
-      37.5%,
-      62.5%,
-      87.5% {
-        transform: rotate(50deg);
-      }
-    }
-
-    @keyframes hamsterBRLimb {
-
-      from,
-      25%,
-      50%,
-      75%,
-      to {
-        transform: rotate(-60deg) translateZ(-1px);
-      }
-
-      12.5%,
-      37.5%,
-      62.5%,
-      87.5% {
-        transform: rotate(20deg) translateZ(-1px);
-      }
-    }
-
-    @keyframes hamsterBLLimb {
-
-      from,
-      25%,
-      50%,
-      75%,
-      to {
-        transform: rotate(20deg);
-      }
-
-      12.5%,
-      37.5%,
-      62.5%,
-      87.5% {
-        transform: rotate(-60deg);
-      }
-    }
-
-    @keyframes hamsterTail {
-
-      from,
-      25%,
-      50%,
-      75%,
-      to {
-        transform: rotate(30deg) translateZ(-1px);
-      }
-
-      12.5%,
-      37.5%,
-      62.5%,
-      87.5% {
-        transform: rotate(10deg) translateZ(-1px);
-      }
-    }
-
-    @keyframes spoke {
-      from {
-        transform: rotate(0);
-      }
-
-      to {
-        transform: rotate(-1turn);
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
       }
     }
   </style>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.tailwindcss.com"></script>
   <title>Loading...</title>
 </head>
 
-<body class="main bg-secondary">
-  <div id="alert" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
-    Your results are now ready! You can now refresh the page.
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
+<body class="bg-slate-400">
+  <!-- Loader Animation Section -->
+  <main class="main">
 
-  <div aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">
-    <div class="wheel"></div>
-    <div class="hamster">
-      <div class="hamster__body">
-        <div class="hamster__head">
-          <div class="hamster__ear"></div>
-          <div class="hamster__eye"></div>
-          <div class="hamster__nose"></div>
+    <div id="alert"  class="m-4 p-2 bg-green-400 border-4 rounded-lg hidden">
+      Your results are now ready! You can now refresh the page.
+      <button class="p-2 bg-red-500 text-white rounded-lg" type="button" onclick="closeAlertBox()">X</button>
+    </div>
+
+    <div>
+      <!-- Loader Credit - https://uiverse.io/shadowfax29/slippery-bullfrog-20 -->
+      <div class="sharingon">
+        <div class="ring">
+          <div class="to"></div>
+          <div class="to"></div>
+          <div class="to"></div>
+          <div class="circle"></div>
         </div>
-        <div class="hamster__limb hamster__limb--fr"></div>
-        <div class="hamster__limb hamster__limb--fl"></div>
-        <div class="hamster__limb hamster__limb--br"></div>
-        <div class="hamster__limb hamster__limb--bl"></div>
-        <div class="hamster__tail"></div>
       </div>
     </div>
-    <div class="spoke"></div>
-  </div>
-  <p class="fs-3 mt-3 mb-3">Results will be available soon. Please refresh the page.</p>
-  <form action="{{ url_for('results_page', id=id) }}">
-    <button class="btn btn-primary" type="submit">Refresh</button>
-  </form>
+
+    <p class="m-4 text-center">
+      <span class="poppins-medium">Results will be available soon.</span>
+      </br>
+      <span class="poppins-regular">An alert will be conveyed to you automatically.</span>
+    </p>
+    <form action="{{ url_for('results_page', id=id) }}">
+      <button class="bg-blue-500 text-white p-2 rounded-lg" type="submit">Refresh</button>
+    </form>
+  </main>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <script>
-    function checkResults() {
-        fetch('/results/{{ id }}')
-            .then(response => response.text())
-            .then(data => {
-                if (data !== 'Results not ready, please refresh the page.') {
-                    document.getElementById('alert').style.display = 'block';
-                }
-            });
-    }
-    setInterval(checkResults, 5000);
-    </script>
-    
+
+<script>
+  function checkResults() {
+    fetch('/results/{{ id }}')
+      .then(response => response.text())
+      .then(data => {
+        if (data !== 'Results not ready, please refresh the page.') {
+          document.getElementById('alert').style.display = 'block';
+        }
+      });
+  }
+  setInterval(checkResults, 5000);
+
+  function closeAlertBox() {
+      document.querySelector('#alert').style.display = 'none';
+  }
+</script>
+
 
 </html>
