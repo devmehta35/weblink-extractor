@@ -3,8 +3,6 @@
 
 <head>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,500;1,400;1,500&display=swap');
-
     .main {
       height: 100vh;
       width: 100%;
@@ -16,6 +14,8 @@
   </style>
   <!-- Poppins Font Classes -->
   <style>
+     @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,500;1,400;1,500&display=swap');
+     
     .poppins-extralight {
       font-family: "Poppins", sans-serif;
       font-weight: 200;
@@ -174,9 +174,19 @@
   <!-- Loader Animation Section -->
   <main class="main">
 
-    <div id="alert"  class="m-4 p-2 bg-green-400 border-4 rounded-lg hidden">
-      Your results are now ready! You can now refresh the page.
-      <button class="p-2 bg-red-500 text-white rounded-lg" type="button" onclick="closeAlertBox()">X</button>
+    <!-- IP Address -->
+    <div class="m-4 border-2 border-black p-4 rounded-lg fixed top-1 right-1 bg-white bg-blend-multiply">
+      <span class="flex items-center text-red-700">
+        <img class="mr-2 w-10 h-10 rounded-full" src="https://bg-so-1.zippyimage.com/2024/03/26/74365782e62645d45ccd1b29b0b04da2.gif" alt="">
+        <strong id="user-ip"></strong>
+      </span>
+    </div>
+
+    <div id="alert"  class="m-4 p-2 bg-green-600 border-4 rounded-lg hidden">
+      <span class="poppins-medium">Your results are now ready! You can now refresh the page.</span>
+      <button class="p-2 bg-red-500 text-white rounded-full" type="button" onclick="closeAlertBox()">
+        <span>X</span>
+      </button>
     </div>
 
     <div>
@@ -197,10 +207,18 @@
       <span class="poppins-regular">An alert will be conveyed to you automatically.</span>
     </p>
     <form action="{{ url_for('results_page', id=id) }}">
-      <button class="bg-blue-500 text-white p-2 rounded-lg" type="submit">Refresh</button>
+      <button class="bg-blue-500 text-white p-4 rounded-lg poppins-medium" type="submit">Refresh</button>
     </form>
   </main>
 </body>
+
+<script>
+  // Get the user's IP address from the Flask variable
+  var userIp = "{{ user_ip }}"; // This will be replaced with the actual IP address
+
+  // Update the content of the <p> tag with the IP address
+  document.getElementById("user-ip").textContent = "Your IP address is: " + userIp;
+</script>
 
 <script>
   function checkResults() {
@@ -218,6 +236,4 @@
       document.querySelector('#alert').style.display = 'none';
   }
 </script>
-
-
 </html>

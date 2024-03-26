@@ -12,28 +12,70 @@
             flex-direction: column;
         }
     </style>
+    <!-- BG -->
+    <style>
+        .container {
+            background-image: linear-gradient(to right, #434343 0%, black 100%);
+            color: aliceblue
+        }
+    </style>
+    <!-- Poppins Font Classes -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,500;1,400;1,500&display=swap');
+
+        .poppins-extralight {
+            font-family: "Poppins", sans-serif;
+            font-weight: 200;
+            font-style: normal;
+        }
+
+        .poppins-regular {
+            font-family: "Poppins", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .poppins-medium {
+            font-family: "Poppins", sans-serif;
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        .poppins-regular-italic {
+            font-family: "Poppins", sans-serif;
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        .poppins-medium-italic {
+            font-family: "Poppins", sans-serif;
+            font-weight: 500;
+            font-style: italic;
+        }
+    </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Search</title>
 </head>
 
-<body class="main bg-secondary">
-    <h1 class="display-1 mb-3">WebLinks Extractor</h1>
-    <h3 class="display-7 mb-3">-Built with passion <span>💙</span> by <a
-            href="https://www.instagram.com/dev_1.1.1.1">Dev</a></h3>
-    <div class="container">
+<body class="main container">
+    <h1 class="poppins-medium text-6xl mb-4">Internet Extractor</h1>
+    <h3 class="poppins-regular-italic text-2xl mb-8">-Developed by <span>💙</span> by <a
+            href="https://www.instagram.com/dev_1.1.1.1" class="border-b-2 border-blue-600">Dev</a></h3>
+    <div class="">
         <form method="POST">
-            <div class="form-floating mb-3">
-                <input type="text" name="query" required class="form-control" id="floatingInput"
+            <div class="form-floating mb-3 flex items-center">
+                <input type="text" name="query" required class="form-control mr-2" id="floatingInput"
                     placeholder="Search Anything....">
-                <label for="floatingInput">Keyword</label>
+                <label for="floatingInput" class="text-black">Keyword</label>
+                <span class="text-2xl">~</span>
+                <button class="rounded-lg p-2" type="submit">
+                    <img class="h-8 w-12" src="https://img.icons8.com/color/48/search--v1.png" alt="search--v1" />
+                </button>
             </div>
-            <button class="btn btn-primary" type="submit">Search</button>
         </form>
     </div>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
 
 </html>
