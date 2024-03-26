@@ -8,7 +8,7 @@ from datetime import datetime
 from dotenv import load_dotenv
 import os
 
-from flask_sslify import SSLify
+# from flask_sslify import SSLify
 
 # Load environment variables from the .env file
 load_dotenv()
@@ -20,7 +20,7 @@ db = client['user_data']
 collection = db['searches']
 
 app = Flask(__name__)
-sslify = SSLify(app) # To automatically Turn HTTP in HTTPS
+# sslify = SSLify(app) # To automatically Turn HTTP in HTTPS
 results = {}
 
 def background_search(query, id, ip_address):
@@ -64,4 +64,4 @@ def results_page(id):
 
 # Driver's Code
 # if __name__ == '__main__':
-#     app.run(debug=True)
+#     app.run(debug=False)
