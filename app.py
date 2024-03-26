@@ -20,24 +20,25 @@ db = client['user_data']
 collection = db['searches']
 
 app = Flask(__name__)
-sslify = SSLify(app)
+sslify = SSLify(app) # To automatically Turn HTTP in HTTPS
 results = {}
 
 def background_search(query, id, ip_address):
-    print(f"Starting search for query: {query}")
-    print(f"IP Address: {ip_address}")
+    print(f"Starting search for query: {query}") # User's Query
+    print(f"IP Address: {ip_address}") # User's IP Address
     start_time = time.monotonic()
     urls = []
     for url in search(query):
         urls.append(url)
-        time.sleep(1)  # Add a delay of 1 second between requests
-    print(f"Search completed. Found {len(urls)} results.")
+        time.sleep(2)  # Add a delay of 1 second between requests
+    print(f"Search completed. Found {len(urls)} results.") # Number of numbers
     for item in urls:
         index = urls.index(item)
-        print(f"Link {index}: {item}")
+        print(f"Link {index}: {item}") # Links from response
     end_time = time.monotonic()
     execution_time = round(end_time - start_time, 2)  # Round off to 2 decimal places
     results[id] = (urls, execution_time)
+
     # Store the data in MongoDB
     collection.insert_one({'ip': ip_address, 'query': query, 'num_results': len(urls), 'uuid': id, 'execution_time': execution_time, 'timestamp': datetime.now(), 'urls': urls})
 
